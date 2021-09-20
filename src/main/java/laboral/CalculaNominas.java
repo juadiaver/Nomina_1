@@ -6,7 +6,7 @@
 package laboral;
 
 /**
- *
+ * Prueba de cambio en git
  * @author juanjose
  */
 public class CalculaNominas {
