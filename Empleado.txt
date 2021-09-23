@@ -1,1 +1,2 @@
-James_Cosling 32000032G M 4 7
+JamesCosling,32000032G,M,4,7
+JamesPetter,32000033G,F,1,9

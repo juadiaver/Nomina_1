@@ -1,0 +1,2 @@
+Dni: 32000032G Sueldo: 145000
+Dni: 32000033G Sueldo: 95000
