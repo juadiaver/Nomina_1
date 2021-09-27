@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"laboral","l":"CalculaNominas"},{"p":"laboral","l":"DatosNoCorrectosException"},{"p":"laboral","l":"Empleado"},{"p":"laboral","l":"Nomina"},{"p":"laboral","l":"Persona"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"laboral","l":"Alta"},{"p":"laboral","l":"CalculaNominas"},{"p":"laboral","l":"ConexionBD"},{"p":"laboral","l":"DatosNoCorrectosException"},{"p":"laboral","l":"Empleado"},{"p":"laboral","l":"Ficheros"},{"p":"laboral","l":"Nomina"},{"p":"laboral","l":"Persona"}]
