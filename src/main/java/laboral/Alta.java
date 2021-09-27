@@ -7,18 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.io.File;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class Alta {
 
     FileReader fr = null;
     BufferedReader br = null;
-    FileWriter fw = null;
-    BufferedWriter bw = null;
     List<Empleado> empleados = new ArrayList();
     List lineaEmpleado = new ArrayList();
     
@@ -39,7 +35,7 @@ public class Alta {
         sc.nextLine();
         System.out.println("sexo: ");
         String sexo = sc.nextLine();
-
+        sc.close();
         Connection con = null;
         String sURL = "jdbc:mysql://localhost:3306/nomina";
         con = DriverManager.getConnection(sURL, "root", "");
@@ -155,5 +151,7 @@ public class Alta {
         File fichero = new File("empleadosNuevos.txt");
         alta.altaEmpleado(fichero);
     }
+
+    
 
 }
