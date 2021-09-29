@@ -145,13 +145,5 @@ public class Alta {
 
     }
 
-    public static void main(String[] args) throws SQLException,FileNotFoundException {
-        Alta alta = new Alta();
-
-        File fichero = new File("empleadosNuevos.txt");
-        alta.altaEmpleado(fichero);
-    }
-
-    
-
+ 
 }
