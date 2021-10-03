@@ -20,16 +20,16 @@ public class PuebaNomina {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion;
+        Nomina n=new Nomina();
 
         while (!salir) {
 
             System.out.println("1. Mostrar empleados");
             System.out.println("2. Mostrar salarios");
             System.out.println("3. Modificar datos de empleados");
-            System.out.println("4. Recalcular y actualizar el sueldo de un empleado");
-            System.out.println("5. Recalcular y actualizar los sueldos de todos los empleados.");
-            System.out.println("6. Realizar una copia de seguridad de la base de datos en ficheros.");
-            System.out.println("7. Salir");
+            System.out.println("4. Recalcular y actualizar los sueldos de todos los empleados.");
+            System.out.println("5. Realizar una copia de seguridad de la base de datos en ficheros.");
+            System.out.println("6. Salir");
 
             System.out.println("Seleciona la opcion a ejecutar: ");
             opcion = sn.nextInt();
@@ -152,7 +152,7 @@ public class PuebaNomina {
                                 
                                 stmt.executeUpdate();
 
-                                Nomina n=new Nomina();
+                                
                     
                             } catch (SQLException sqle) {
                                 System.out.println("Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
