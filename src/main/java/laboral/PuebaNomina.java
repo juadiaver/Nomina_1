@@ -16,11 +16,10 @@ public class PuebaNomina {
         Alta alta = new Alta();
 
         File fichero = new File("empleadosNuevos.txt");
-        alta.altaEmpleado(fichero);
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion;
-        Nomina n=new Nomina();
+        Nomina n = new Nomina();
 
         while (!salir) {
 
@@ -50,6 +49,7 @@ public class PuebaNomina {
                             System.out.println("Nombre: " + rs.getString(3) + ", dni: " + rs.getString(4) + " ,sexo: "
                                     + rs.getString(5) + " ,categoria: " + rs.getInt(1) + " ,antiguedad: "
                                     + rs.getInt(1));
+                            numEmp++;
                         }
 
                     } catch (SQLException sqle) {
@@ -64,7 +64,8 @@ public class PuebaNomina {
 
                         while (rs.next()) {
                             System.out.println("Empleado " + numEmp + ":");
-                            System.out.println("Dni: " + rs.getString(2) + ", sueldo: " + rs.getInt(1));
+                            System.out.println("Dni: " + rs.getString(1) + ", sueldo: " + rs.getInt(2));
+
                         }
 
                     } catch (SQLException sqle) {
@@ -78,106 +79,122 @@ public class PuebaNomina {
                     String dni = "";
                     System.out.println("Vas a modificar los datos de un empleado.");
                     System.out.println("Dime el dni del empleado a modificar");
+                    sn.nextLine();
                     dni = sn.nextLine();
 
-                    System.out.println("Que quieres cambiar:");
-                    System.out.println("1. Cambiar nombre");
-                    System.out.println("2. Cambiar dni");
-                    System.out.println("3. Cambiar antiguedad");
-                    System.out.println("4. Cambiar categoria");
-                    System.out.println("5. Cambiar sexo");
-                    System.out.println("6. Salir");
-
-                    System.out.println("Seleciona la opcion a ejecutar: ");
-                    opcion = sn.nextInt();
                     while (!salir) {
 
+                        System.out.println("Que quieres cambiar:");
+                        System.out.println("1. Cambiar nombre");
+                        System.out.println("2. Cambiar dni");
+                        System.out.println("3. Cambiar antiguedad");
+                        System.out.println("4. Cambiar categoria");
+                        System.out.println("5. Cambiar sexo");
+                        System.out.println("6. Salir");
+                        System.out.println("Seleciona la opcion a ejecutar: ");
+                        opcion = sn.nextInt();
+                        
                         switch (opcion) {
 
                             case 1:
-                            String newName;
-                            System.out.println("Dime el nuevo nombre: ");
-                            newName= sn.nextLine();
-                            try (PreparedStatement stmt = con.prepareStatement("UPDATE empleados SET nombre = ? where dni = ?");) {
-            
-                                stmt.setString(1, newName);
-                                stmt.setString(2, dni);
-                                
-                                stmt.executeUpdate();
-                    
-                            } catch (SQLException sqle) {
-                                System.out.println("Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
-                            }
-                            break;
+                                String newName;
+                                System.out.println("Dime el nuevo nombre: ");
+                                sn.nextLine();
+                                newName = sn.nextLine();
+                                try (PreparedStatement stmt = con
+                                        .prepareStatement("UPDATE empleados SET nombre = ? where dni = ?");) {
+
+                                    stmt.setString(1, newName);
+                                    stmt.setString(2, dni);
+
+                                    stmt.executeUpdate();
+
+                                } catch (SQLException sqle) {
+                                    System.out.println(
+                                            "Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
+                                }
+                                break;
                             case 2:
-                            String newDni;
-                            System.out.println("Dime el nuevo dni: ");
-                            newDni= sn.nextLine();
-                            try (PreparedStatement stmt = con.prepareStatement("UPDATE empleados SET dni = ? where dni = ?");) {
-            
-                                stmt.setString(1, newDni);
-                                stmt.setString(2, dni);
+                                String newDni;
+                                System.out.println("Dime el nuevo dni: ");
+                                sn.nextLine();
+                                newDni = sn.nextLine();
                                 
-                                stmt.executeUpdate();
-                    
-                            } catch (SQLException sqle) {
-                                System.out.println("Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
-                            }
-                            break;
+                                try (PreparedStatement stmt = con
+                                        .prepareStatement("UPDATE empleados SET dni = ? where dni = ?");) {
+
+                                    stmt.setString(1, newDni);
+                                    stmt.setString(2, dni);
+
+                                    stmt.executeUpdate();
+
+                                } catch (SQLException sqle) {
+                                    System.out.println(
+                                            "Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
+                                }
+                                dni=newDni;
+                                break;
                             case 3:
-                            int newAnt;
-                            System.out.println("Dime la nueva antiguedad ");
-                            newAnt= sn.nextInt();
-                            sn.nextLine();
-                            try (PreparedStatement stmt = con.prepareStatement("UPDATE empleados SET antiguedad = ? where dni = ?");) {
-            
-                                stmt.setInt(1, newAnt);
-                                stmt.setString(2, dni);
-                                
-                                stmt.executeUpdate();
-                    
-                            } catch (SQLException sqle) {
-                                System.out.println("Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
-                            }
-                            break;
+                                int newAnt;
+                                System.out.println("Dime la nueva antiguedad ");
+                                sn.nextLine();
+                                newAnt = sn.nextInt();
+                                sn.nextLine();
+                                try (PreparedStatement stmt = con
+                                        .prepareStatement("UPDATE empleados SET anyos = ? where dni = ?");) {
+
+                                    stmt.setInt(1, newAnt);
+                                    stmt.setString(2, dni);
+
+                                    stmt.executeUpdate();
+
+                                } catch (SQLException sqle) {
+                                    System.out.println(
+                                            "Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
+                                }
+                                break;
                             case 4:
-                            int newCat;
-                            System.out.println("Dime la nueva categoria: ");
-                            newCat= sn.nextInt();
-                            sn.nextLine();
-                            try (PreparedStatement stmt = con.prepareStatement("UPDATE empleados SET categoria = ? where dni = ?");) {
-            
-                                stmt.setInt(1, newCat);
-                                stmt.setString(2, dni);
-                                
-                                stmt.executeUpdate();
+                                int newCat;
+                                System.out.println("Dime la nueva categoria: ");
+                                sn.nextLine();
+                                newCat = sn.nextInt();
+                                sn.nextLine();
+                                try (PreparedStatement stmt = con
+                                        .prepareStatement("UPDATE empleados SET categoria = ? where dni = ?");) {
 
-                                
-                    
-                            } catch (SQLException sqle) {
-                                System.out.println("Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
-                            }
-                            break;
+                                    stmt.setInt(1, newCat);
+                                    stmt.setString(2, dni);
+
+                                    stmt.executeUpdate();
+
+                                } catch (SQLException sqle) {
+                                    System.out.println(
+                                            "Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
+                                }
+                                break;
                             case 5:
-                            String newSex;
-                            System.out.println("Dime el nuevo sexo: ");
-                            newSex=sn.nextLine();
+                                String newSex;
+                                System.out.println("Dime el nuevo sexo: ");
+                                sn.nextLine();
+                                newSex = sn.nextLine();
 
-                            try (PreparedStatement stmt = con.prepareStatement("UPDATE empleados SET sexo = ? where dni = ?");) {
-            
-                                stmt.setString(1, newSex);
-                                stmt.setString(2, dni);
-                                
-                                stmt.executeUpdate();
-                    
-                            } catch (SQLException sqle) {
-                                System.out.println("Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
-                            }
-                            break;
+                                try (PreparedStatement stmt = con
+                                        .prepareStatement("UPDATE empleados SET sexo = ? where dni = ?");) {
+
+                                    stmt.setString(1, newSex);
+                                    stmt.setString(2, dni);
+
+                                    stmt.executeUpdate();
+
+                                } catch (SQLException sqle) {
+                                    System.out.println(
+                                            "Error en la ejecución:" + sqle.getErrorCode() + " " + sqle.getMessage());
+                                }
+                                break;
                             case 6:
 
-                            salir=true;
-                            break;
+                                salir = true;
+                                break;
                         }
 
                     }
@@ -186,8 +203,14 @@ public class PuebaNomina {
                 case 4:
                     salir = true;
                     break;
+                case 5:
+                    salir = true;
+                    break;
+                case 6:
+                    salir = true;
+                    break;
                 default:
-                    System.out.println("Solo números entre 1 y 4");
+                    System.out.println("Solo números entre 1 y 6");
             }
             con.close();
         }
