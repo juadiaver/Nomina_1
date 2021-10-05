@@ -35,7 +35,6 @@ public class Alta {
         sc.nextLine();
         System.out.println("sexo: ");
         String sexo = sc.nextLine();
-        sc.close();
         Connection con = null;
         String sURL = "jdbc:mysql://localhost:3306/nomina";
         con = DriverManager.getConnection(sURL, "root", "");
